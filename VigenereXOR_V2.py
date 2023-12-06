@@ -16,6 +16,7 @@ def vigenere_cipher(input_data, key, mode):
     if mode == 'text':
         input_bits = text_to_bits(input_data)
         key_bits = text_to_bits(key)
+
     elif mode == 'bits':
         input_bits = input_data
         key_bits = text_to_bits(key)
@@ -50,37 +51,42 @@ if __name__ == "__main__":
             plaintext = input("Masukkan plaintext (lebih dari 5 karakter): ")
             key = input("Masukkan kunci (lebih dari 5 karakter): ")
             if len(plaintext) >= 6 and len(key) >= 6:
-                key_bits = text_to_bits(key)
+                input_bits, key_bits, result_bits, result_text = vigenere_cipher(
+                    plaintext,
+                    key,
+                    'text'
+                )
                 break
             else:
                 print("Panjang plaintext atau kunci kurang dari 6 karakter. Silakan coba lagi.")
         mode = 'text'
-        output_filename = "output1.txt"
+        output_filename = "output1_V2.txt"
+
     elif choice == '2':
         while True:
             plaintext_bits = input("Masukkan plaintext bits: ")
             key = input("Masukkan key text: ")
             if is_valid_text_input(key) and is_valid_bit_input(plaintext_bits):
-                key_bits = text_to_bits(key)
+                input_bits, key_bits, result_bits, result_text = vigenere_cipher(
+                    plaintext_bits,
+                    key,
+                    'bits'
+                )
                 break
             else:
                 print("Panjang key kurang dari 6 karakter atau plaintext bits tidak valid. Silakan coba lagi.")
         mode = 'bits'
-        output_filename = "output2.txt"
+        output_filename = "output2_V2.txt"
+
     elif choice == '3':
         print("Keluar dari program")
         exit()
+
     else:
         print("Pilihan tidak valid. Keluar program.")
         exit()
 
     if mode == 'text':
-            # Enkripsi
-        input_bits, key_bits, result_bits, result_text = vigenere_cipher(
-            plaintext if mode == 'text' else plaintext_bits,
-            key if mode == 'text' else key_bits,
-            'text'
-        )
 
         print(f"\nBit Pesan: {separate_bits(input_bits)}")
         print(f"Bit Kunci: {separate_bits(key_bits)}")
@@ -91,29 +97,23 @@ if __name__ == "__main__":
             output_file.write(f"Plaintext: {plaintext}\n")
             output_file.write(f"Key text: {key}\n")
             output_file.write(f"Bit Pesan: {separate_bits(input_bits)}\n")
-            output_file.write(f"Bit Kunci: {separate_bits(key_bits)}\n")
+            output_file.write(f"Bit Kunci:2 {separate_bits(key_bits)}\n")
             output_file.write(f"Bit Output: {result_bits}\n")
             output_file.write(f"Karakter Output: {result_text}\n")
 
             print(f"Hasil Output telah didokumentasikan dalam file {output_filename}")
 
     if mode == 'bits':
-        decrypted_bits = ""
-        for i in range(len(plaintext_bits)):
-            decrypted_bits += str(int(plaintext_bits[i]) ^ int(key_bits[i % len(key_bits)]))
-
-        # Convert the binary result back to text
-        decrypted_text = bits_to_text(decrypted_bits)
 
         print(f"\nBit Pesan: {separate_bits(plaintext_bits)}")
         print(f"Key text: {key}")
-        print(f"Bit Output: {separate_bits(decrypted_bits)}")
-        print(f"Karakter Output: {decrypted_text}")
+        print(f"Bit Output: {separate_bits(result_bits)}")
+        print(f"Karakter Output: {result_text}")
 
         with open(output_filename, "w") as output_file:
             output_file.write(f"Plaintext Bit: {separate_bits(plaintext_bits)}\n")
             output_file.write(f"Key text: {key}\n")
-            output_file.write(f"Bit Output: {separate_bits(decrypted_bits)}\n")
-            output_file.write(f"Karakter Output (Dekripsi): {decrypted_text}\n")
+            output_file.write(f"Bit Output: {separate_bits(result_bits)}\n")
+            output_file.write(f"Karakter Output (Dekripsi): {result_text}\n")
 
             print(f"Hasil Dekripsi telah didokumentasikan dalam file {output_filename}")
