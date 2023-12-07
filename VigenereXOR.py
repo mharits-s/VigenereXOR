@@ -64,7 +64,7 @@ if __name__ == "__main__":
                 key_bits = text_to_bits(key)
                 break
             else:
-                print("Panjang key kurang dari 6 karakter atau plaintext bits tidak valid. Silakan coba lagi.")
+                print("Panjang key kurang dari 6 karakter atau text bits tidak valid. Silakan coba lagi.")
         mode = 'bits'
         output_filename = "output2.txt"
     elif choice == '3':

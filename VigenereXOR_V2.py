@@ -88,32 +88,32 @@ if __name__ == "__main__":
 
     if mode == 'text':
 
-        print(f"\nBit Pesan: {separate_bits(input_bits)}")
-        print(f"Bit Kunci: {separate_bits(key_bits)}")
-        print(f"Bit Output: {separate_bits(result_bits)}")
-        print(f"Karakter Output: {result_text}")
+        print(f"\nBit Pesan:\n{separate_bits(input_bits)}\n")
+        print(f"Bit Kunci:\n{separate_bits(key_bits)}\n")
+        print(f"Bit Output:\n{separate_bits(result_bits)}\n")
+        print(f"Karakter Output:\n{result_text}\n")
 
         with open(output_filename, "w") as output_file:
             output_file.write(f"Plaintext: {plaintext}\n")
             output_file.write(f"Key text: {key}\n")
-            output_file.write(f"Bit Pesan: {separate_bits(input_bits)}\n")
-            output_file.write(f"Bit Kunci:2 {separate_bits(key_bits)}\n")
-            output_file.write(f"Bit Output: {result_bits}\n")
-            output_file.write(f"Karakter Output: {result_text}\n")
+            output_file.write(f"\nBit Pesan:\n{separate_bits(input_bits)}\n")
+            output_file.write(f"\nBit Kunci:\n{separate_bits(key_bits)}\n")
+            output_file.write(f"\nBit Output:\n{result_bits}\n")
+            output_file.write(f"\nKarakter Output:\n{result_text}\n")
 
             print(f"Hasil Output telah didokumentasikan dalam file {output_filename}")
 
     if mode == 'bits':
 
-        print(f"\nBit Pesan: {separate_bits(plaintext_bits)}")
-        print(f"Key text: {key}")
-        print(f"Bit Output: {separate_bits(result_bits)}")
-        print(f"Karakter Output: {result_text}")
+        print(f"\nBit Pesan:\n{separate_bits(plaintext_bits)}\n")
+        print(f"Key text:\n{key}\n")
+        print(f"Bit Output:\n{separate_bits(result_bits)}\n")
+        print(f"Karakter Output:\n{result_text}\n")
 
         with open(output_filename, "w") as output_file:
             output_file.write(f"Plaintext Bit: {separate_bits(plaintext_bits)}\n")
             output_file.write(f"Key text: {key}\n")
-            output_file.write(f"Bit Output: {separate_bits(result_bits)}\n")
-            output_file.write(f"Karakter Output (Dekripsi): {result_text}\n")
+            output_file.write(f"\nBit Output:\n{separate_bits(result_bits)}\n")
+            output_file.write(f"\nKarakter Output:\n{result_text}\n")
 
             print(f"Hasil Dekripsi telah didokumentasikan dalam file {output_filename}")
